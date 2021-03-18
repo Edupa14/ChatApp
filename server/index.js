@@ -24,8 +24,6 @@ function getMensajes(){
     return new Promise(  function(resolve, reject) {
         var sql = 'SELECT * FROM mensajes';
          connection.query(sql, function (err, rows, fields) {
-            // Call reject on error states,
-            // call resolve with results
             if (err) {
                 return reject(err);
             }

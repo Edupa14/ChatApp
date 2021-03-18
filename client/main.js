@@ -1,14 +1,14 @@
 var socket = io.connect('http://192.168.0.12:6677', {'forceNew':true})
 
 socket.on('messages', function(data){
-    console.log(data);
+    // console.log(data);
     render(data)
 })
 function render(data){
     var html = data.map(function(message, index){
         return (`
         <div class="message">
-            <strong>${message.Nombre} : dice</strong>
+            <strong>${message.Nombre}</strong>
             <p>${message.Mensaje}</p>
         </div>
         `)
@@ -20,10 +20,45 @@ function render(data){
 function addMessage(e){
     let message ={
         Nombre: document.getElementById('nickName').value,
-        Mensaje: document.getElementById('text').value
+        Mensaje: document.getElementById('text').value,
+        Hora: hora(),
+        Fecha: fecha()
     }
     document.getElementById('nickName').style.display = 'none'
     socket.emit('add-message', message)
     
     return false
+}
+
+function validarTiempo(i) {
+    if (i < 10) {
+      i = "0" + i;
+    }
+    return i;
+  }
+  
+  function hora() {
+    let hoy = new Date();
+    let h = hoy.getHours();
+    let m = hoy.getMinutes();
+    let s = hoy.getSeconds();
+    // agregar 0 para numeros menores de 10
+    m = validarTiempo(m);
+    s = validarTiempo(s);
+    let hora = h + ":" + m + ":" + s;
+    // t = setTimeout(function() {
+    //   startTime()
+    // }, 500);
+    return hora;
+  }
+
+  function fecha() {
+    let d = new Date(),
+        mes = '' + (d.getMonth() + 1),
+        dia = '' + d.getDate(),
+        anio = d.getFullYear();
+    dia = validarTiempo(dia);
+    mes = validarTiempo(mes);
+
+    return [anio, mes, dia].join('-');
 }
