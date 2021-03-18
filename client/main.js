@@ -30,6 +30,7 @@ function addMessage(e){
     return false
 }
 
+// agregar 0 para numeros menores de 10
 function validarTiempo(i) {
     if (i < 10) {
       i = "0" + i;
@@ -42,13 +43,9 @@ function validarTiempo(i) {
     let h = hoy.getHours();
     let m = hoy.getMinutes();
     let s = hoy.getSeconds();
-    // agregar 0 para numeros menores de 10
     m = validarTiempo(m);
     s = validarTiempo(s);
     let hora = h + ":" + m + ":" + s;
-    // t = setTimeout(function() {
-    //   startTime()
-    // }, 500);
     return hora;
   }
 

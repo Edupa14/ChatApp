@@ -6,14 +6,13 @@
     <title>Chat con Socket.io y NodeJs</title>
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <script src="main.js"></script>
+    <link rel="stylesheet" href="./dist/main.css">
     <style>
         #messages{
-            width: 95%;
-            max-width: 400px;
-            height: 350px;
-            overflow: scroll;
-            border: 1px solid #eee;
-            box-shadow: 0 0 20px #ccc;
+            width: 100%;
+            /* overflow-y: scroll; */
+            /* border: 1px solid #eee; */
+            /* box-shadow: 0 0 20px #ccc; */
         }
         .message{
             margin: 20px;
@@ -24,12 +23,25 @@
     </style>
 </head>
 <body>
-    <h1>Chat con Socket.io y NodeJs</h1>
-    <div id="messages"></div>
-    <form onsubmit="return addMessage()">
-        <input id="nickName" type="text" placeholder="Nombre o Nick">
-        <textarea name="" id="text" placeholder="Mensaje"></textarea>
-        <input type="submit" value="Enviar">
-    </form>
+    <main>
+        <section class="container mx-auto ">
+            <div class="grid grid-cols-6 ">
+            <div class=""></div>
+            <div class="col-span-4 divide-y">
+                <div id="messages" class="overflow-y-auto h-4/6" ></div>
+                <div class="flex">
+                    <form onsubmit="return addMessage()">
+                        
+                        <input name="" id="text" placeholder="Mensaje"></input>
+                        <input type="submit" value="Enviar">
+                    </form>
+                </div>
+            </div>
+            <div class="">
+                <input id="nickName" class="rounded text-pink-500" type="text" placeholder="Nombre o Nick">
+            </div>
+        </div>
+        </section>
+    </main>
 </body>
 </html>
