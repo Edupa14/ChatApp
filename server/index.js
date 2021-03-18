@@ -2,30 +2,75 @@ var express = require('express')
 var app = express()
 var server = require('http').Server(app)
 var io = require('socket.io')(server)
+const bodyParser = require('body-parser');
+/* Conexion a MySQL*/
+const mysql = require('mysql');
 
+
+/* uso del archivo index dentro de la carpeta client como pagina de inicio estatica*/
 app.use(express.static('client'))
 
-app.get('/hola-mundo', function(req, res){
-    res.status(200).send('Hola mundo desde una ruta')
-})
+// MySql
+const connection = mysql.createConnection({
+    host: 'localhost',
+    port: 3307,
+    user: 'root',
+    password: '',
+    database: 'chat_app'
+});
 
-var messages = [{
-    id: 1,
-    text: 'Bienvenido al chat privado de Socket.io y Nodejs.',
-    nickName: 'Bot'
-}]
 
-io.on('connection', function(socket){
+function getMensajes(){
+    return new Promise(  function(resolve, reject) {
+        var sql = 'SELECT * FROM mensajes';
+         connection.query(sql, function (err, rows, fields) {
+            // Call reject on error states,
+            // call resolve with results
+            if (err) {
+                return reject(err);
+            }
+            resolve(rows);
+        });
+    });
+}
+function newMessage(data){
+    return new Promise(  function(resolve, reject) {
+        var sql = 'INSERT INTO mensajes SET ?';
+        const nuevoMensaje = {
+            Mensaje: data.Mensaje,
+            Nombre: data.Nombre,
+            Hora: data.Hora,
+            Fecha: data.Fecha
+          };
+          connection.query(sql, nuevoMensaje, error => {
+            if (error) return reject(err);
+            resolve('Mensaje creado!');
+          });
+    });
+}
+ 
+
+/* Conexion al servidor con SocketIO */
+io.on('connection', async function(socket){
     console.log("El equipo con la ip : "+ socket.handshake.address+" se ha conectado...");
+    
+    
+    socket.emit('messages',  await getMensajes())
 
-    socket.emit('messages', messages)
-
-    socket.on('add-message', function(data){
-        messages.push(data)
-    io.sockets.emit('messages', messages)
+    socket.on('add-message', async function(data){
+        newMessage(data)
+    io.sockets.emit('messages', await getMensajes())
     })
 })
 
+
+// Control de Servidor
 server.listen(6677, function(){
     console.log('Servidor en Línea en http://localhost:6677')
 })
+
+// Control de Base de Datos
+// connection.connect(error => {
+//     if (error) throw error;
+//     console.log('Conexión a Base de Datos Exitosa!');
+// });
