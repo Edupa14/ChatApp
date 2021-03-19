@@ -6,3 +6,4 @@
   <p>4.- Disfruta</p>
 </section>
 ![img_1](https://user-images.githubusercontent.com/33420774/111739392-f7bc3500-8850-11eb-92e3-2a42dd870a1a.png)
+![img_2](https://user-images.githubusercontent.com/33420774/111739613-508bcd80-8851-11eb-95be-b370b108f48b.png)
