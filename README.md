@@ -5,5 +5,5 @@
   <p>3.- Cambia la direccion ip de la variable socket del archivo ubicado 'client/main.js' por la ip de tu ordenador, puedes cambiarlo por localhost:6677 pero eso limitaria a que solo sea en tu entorno local, de preferencia ingresa a cmd y coloca la ipv4 que muestra el comando ipconfig</p>
   <p>4.- Disfruta</p>
 </section>
-![Alt text](/images/img_1.png "Desktop")
-![Alt text](/images/img_2.png "Movil")
+![Alt text](/images/img_1.png?raw=true "Desktop")
+![Alt text](/images/img_2.png?raw=true "Movil")
