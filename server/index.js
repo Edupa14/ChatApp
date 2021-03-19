@@ -31,14 +31,15 @@ function getMensajes(){
         });
     });
 }
-function newMessage(data){
+function newMessage(data, ip){
     return new Promise(  function(resolve, reject) {
         var sql = 'INSERT INTO mensajes SET ?';
         const nuevoMensaje = {
             Mensaje: data.Mensaje,
             Nombre: data.Nombre,
             Hora: data.Hora,
-            Fecha: data.Fecha
+            Fecha: data.Fecha,
+            Ip: ip
           };
           connection.query(sql, nuevoMensaje, error => {
             if (error) return reject(err);
@@ -56,7 +57,7 @@ io.on('connection', async function(socket){
     socket.emit('messages',  await getMensajes())
 
     socket.on('add-message', async function(data){
-        newMessage(data)
+        newMessage(data, socket.handshake.address)
     io.sockets.emit('messages', await getMensajes())
     })
 })

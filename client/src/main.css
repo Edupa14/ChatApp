@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+
+.input{
+    @apply col-span-5 bg-transparent outline-none p-2 border-b-2 border-gray-200 focus:border-blue-500  ;
+}
+.name{
+    @apply rounded-full h-12 w-12 flex items-center bg-blue-500 justify-center text-white font-sans text-base font-bold;
+}
+.mensaje_chat{
+    background-color:#F1F1F1;
+    @apply  ml-1 p-4 rounded-tl-sm rounded-tr-3xl rounded-br-3xl rounded-bl-3xl justify-self-start;
+}
+.mensaje_chat_propio{
+    background-color:#3B82F6;
+    color: white;
+    @apply  ml-1 p-4 rounded-tl-3xl rounded-tr-sm rounded-br-3xl rounded-bl-3xl justify-self-end;
+}
+.hora{
+    color:#BDBDBD;
+}
+
+@tailwind utilities;
