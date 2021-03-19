@@ -5,5 +5,4 @@
   <p>3.- Cambia la direccion ip de la variable socket del archivo ubicado 'client/main.js' por la ip de tu ordenador, puedes cambiarlo por localhost:6677 pero eso limitaria a que solo sea en tu entorno local, de preferencia ingresa a cmd y coloca la ipv4 que muestra el comando ipconfig</p>
   <p>4.- Disfruta</p>
 </section>
-![Alt text](https://campusvirtual.ull.es/static/images/ull-logo.png)
-![Alt text](images/img_2.png)
+![img_1](https://user-images.githubusercontent.com/33420774/111739392-f7bc3500-8850-11eb-92e3-2a42dd870a1a.png)
